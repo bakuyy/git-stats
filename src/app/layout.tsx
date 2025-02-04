@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Source_Code_Pro } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -11,6 +11,13 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const code_pro = Source_Code_Pro({
+  display:'swap',
+  subsets:['latin'],
+  weight:['600'],
+  variable:'--font-source-code-pro'
+}) 
 
 export const metadata: Metadata = {
   title: "Create Next App",
