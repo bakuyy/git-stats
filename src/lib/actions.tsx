@@ -1,5 +1,6 @@
 "use server"
 
+
 export async function fetchUserData(username: string){
 
     try {
