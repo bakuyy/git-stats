@@ -14,10 +14,10 @@ const code_pro = Source_Code_Pro({
 
 export default function Home() {
   return (
-  <div className={`${code_pro.variable} font-code_pro flex flex-col items-center justify-center min-h-screen px-6 sm:px-12 py-8 gap-8 sm:gap-16`}>       
+    <div className={`${code_pro.variable} font-code_pro flex flex-col items-center justify-center min-h-screen px-6 sm:px-12 py-8 gap-8 sm:gap-16`}>       
 
       <main className="w-full max-w-4xl text-center sm:text-left">
-        <h3 className="mb-4 text-xl sm:text-2xl ">built by bakuyy</h3>
+        <h3 className="mb-4 text-xl sm:text-2xl text-center sm:text-left">built by bakuyy</h3>
 
         <div className="flex gap-2 justify-center sm:justify-start">
           <div className="w-4 h-4 bg-[#0D4429] rounded-full" />
@@ -25,7 +25,7 @@ export default function Home() {
           <div className="w-4 h-4 bg-[#39D353] rounded-full" />
         </div>
 
-        <h1 className="text-4xl mt-6 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
+        <h1 className="text-4xl mt-6 text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight text-center sm:text-left">
           git commit -m “
           <span className="text-gray-400">docs</span>:{" "}
           <span className="text-[#39D353] inline-block">
@@ -34,9 +34,9 @@ export default function Home() {
           ”
         </h1>
 
-        <div className="my-[2vw] text-lg sm:text-xl text-gray-300 leading-relaxe grid gap-2 text-left">
-          <h3>{`>>`} Customized stats book for your GitHub profile in seconds</h3>
-          <h3>{`>>`} Show off your achievements with style and check your <Tooltip title="commitment issues? perfectionist? let's find out!"><span className="underline">clan</span></Tooltip></h3>
+        <div className="my-[2vw] text-lg sm:text-xl text-gray-300 leading-relaxed grid gap-2 text-left">
+          <h3 className="text-center sm:text-left">{`>>`} Customized stats book for your GitHub profile in seconds</h3>
+          <h3 className="text-center sm:text-left">{`>>`} Show off your achievements with style and check your <Tooltip title="commitment issues? perfectionist? let's find out!"><span className="underline">clan</span></Tooltip></h3>
         </div>
 
         <UserQueryForm />
