@@ -12,7 +12,7 @@ export default function Commits(userData: any){
 
     return (
         <div className={`${sourceCodePro.variable} bg-[#0d1117] text-white p-8 mt-[2vh] `}>
-        <div className="max-w-4xl mx-auto flex flex-wrap gap-[1vw]">
+        <div className="max-w-4xl mx-auto flex flex-wrap gap-[1vw] gap-[3vh]">
           <div className="w-full sm:w-[30%] bg-[#161b22] rounded-xl p-6 shadow-md shadow-[#ffcd42]">
             <p className="text-lg font-medium flex">
               happiest commit 

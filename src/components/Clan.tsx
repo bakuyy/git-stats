@@ -4,10 +4,10 @@ import Image from "next/image";
 export default function Clan(userData: any) {
   const clan = getGithubClan(userData);
   const clanMapping = {
-    charcode: { name: "Charcode", colour: "yellow", icon: "🔥", img:'/images/char.png', description:'Bold and fast-paced coder who thrives on new features and rapid development' },
-    squidhub: { name: "Squidhub", colour: "#93c8d0", icon: "🌊", img:'/images/squirtle.png', description:'Steady and reliable developer who focuses on clean, well-structured code' },
-    zapforce: { name: "Pikaforce", colour: "yellow", icon: "⚡", img:'/images/pika.png', description:'Efficient and performance-driven coder who optimizes and automates relentlessly' },
-    bulbyte: { name: "Bulbyte", colour: "green", icon: "🌱", img:'/images/bulb.png', description:'Thoughtful and strategic developer who prioritizes long-term stability and maintainability' },
+    charcode: { name: "A Charcode!", colour: "yellow", icon: "🔥", img:'/images/char.png', description:'Bold and fast-paced coder who thrives on new features and rapid development' },
+    squidhub: { name: "A Squidhub!", colour: "#93c8d0", icon: "🌊", img:'/images/squirtle.png', description:'Steady and reliable developer who focuses on clean, well-structured code' },
+    zapforce: { name: "A Pikaforce!", colour: "yellow", icon: "⚡", img:'/images/pika.png', description:'Efficient and performance-driven coder who optimizes and automates relentlessly' },
+    bulbyte: { name: "A Bulbyte!", colour: "green", icon: "🌱", img:'/images/bulb.png', description:'Thoughtful and strategic developer who prioritizes long-term stability and maintainability' },
   }
   
   if (!clan) return null;
@@ -19,9 +19,9 @@ export default function Clan(userData: any) {
         boxShadow: `5px 5px 10px ${clanDetails.colour}`,
         border: `1px solid ${clanDetails.colour}`
       }} 
-      className="mt-12 max-w-4xl mx-auto flex flex-wrap w-full h-64 relative rounded-xl shadow-lg p-4"
+      className="mt-12 max-w-4xl mx-auto flex flex-wrap w-full h-auto relative rounded-xl shadow-lg p-4"
     >
-      <div className="ml-4 mt-2 text-lg font-semibold">if-you-were-a-pokemon...</div>
+      <div className="ml-4 mt-2 text-lg font-semibold">if-you-were-a-pokemon, you'd-be...</div>
       <div className="p-6 w-full flex items-center">
         <div className="flex items-center space-x-4 w-full">
           <div className="text-5xl">{clanDetails.icon}</div>
@@ -33,7 +33,7 @@ export default function Clan(userData: any) {
             >
               {clanDetails.name}
             </h2>
-            <p className="text-gray-400 text-sm">{clanDetails.description}</p>
+            <p className="text-gray-200 text-sm">{clanDetails.description}</p>
           </div>
 
           <Image 
