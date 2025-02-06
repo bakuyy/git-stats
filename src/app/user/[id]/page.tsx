@@ -8,11 +8,18 @@ import StarDisplay from "@/components/StarDisplay";
 import Commits from "@/components/Commits";
 import Clan from "@/components/Clan";
 import Loading from "./loading";
+import {useRouter} from "next/navigation";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
   const { id } = useParams(); // get username from dynamic route
   const [isLoading, setIsLoading] = useState(true);
+
+  const router = useRouter()
+  const handleClick = () =>{
+    router.push("/")
+  }
 
   useEffect(() => {
     const storedUser = localStorage.getItem("githubUser");
@@ -50,6 +57,10 @@ export default function UserPage() {
       className={`${sourceCodePro.variable} font-source-code-pro min-h-screen bg-[#0d1117] text-white p-8 `}
     >
       <div className="max-w-4xl mx-auto mt-[5vh]">
+        <div className="mb-4 hover:bg-[#0d1117] cursor-pointer">
+        <FaArrowLeftLong onClick={handleClick} size={20}/>
+        </div>
+
         <div className="flex items-center gap-4 sm:text-2xl md:text-2xl">
           <div className="mb-8  mr-4">
             <div className="flex gap-2 justify-center mb-4">
@@ -78,9 +89,8 @@ export default function UserPage() {
             </h2>
           </div>
         </div>
-        <div className="text-2xl mt-[2vh] my-[4vh]">actual-stats/ 🥸</div>
-        <UserStats />
-        <div className="text-2xl mt-[2vh] mt-[5vh]">
+
+        <div className="text-2xl mt-[2vh] mt-[2vh]">
           achievement-gallery/ 🏆
         </div>
         <div className="flex flex-wrap gap-[2vw]">
@@ -98,7 +108,10 @@ export default function UserPage() {
 
         <div className="text-2xl mt-[6vh]">commitment-issues/ ⁉️</div>
         <Commits userData={user} />
+        <div className="text-2xl mt-[2vh] my-[2vh]">actual-stats/ 🥸</div>
+        <UserStats />
       </div>
+      
     </div>
   );
 }
