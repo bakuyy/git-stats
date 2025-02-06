@@ -23,18 +23,16 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
     // parse data
     const data = await response.json();
 
-    const [repos, following, followers] = await Promise.all([
+    const [repos] = await Promise.all([
       fetch(data.repos_url).then(res => res.json()),
-      fetch(data.following_url).then(res => res.json()),
-      fetch(data.followers_url).then(res => res.json()),
     ]);
 
     const userData = {
       login: data.login,
       avatar_url: data.avatar_url,
       public_repos: data.public_repos,
-      followers_count: followers.length,
-      following_count: following.length,
+      followers_count: data.followers,
+      following_count: data.following,
       repos: repos.map((repo: any) => ({
         name: repo.name,
         stars: repo.stargazers_count,
@@ -46,7 +44,7 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
     return userData;
   } catch (error) {
     console.error('Error fetching GitHub user:', error);
-    return null; // other error 
+    return null; 
   }
 }
 

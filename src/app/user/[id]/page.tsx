@@ -50,7 +50,7 @@ export default function UserPage() {
             />
           </div>
 
-          <div className="flex">
+          <div className="">
             <h1 className="text-3xl font-extrabold text-left sm:text-2xl md:text-4xl">
               GET / stats/
             </h1>

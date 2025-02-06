@@ -62,7 +62,7 @@ export default function StarDisplay({ userData, starSize,dimension}:StarDisplayP
     <div className="bg-gradient-to-r from-[#151247] to-[#2b134a] w-64 h-64 relative rounded-xl">
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           {starIcons} 
-          <span className="">stars in your sky: {totalStars}</span>
+          <span className=" ml-4"> repo constellation: {totalStars}</span>
         </div>
     </div>
   );
