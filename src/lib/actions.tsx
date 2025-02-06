@@ -36,45 +36,9 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
     // check if repos is an array before proceeding
     if (!Array.isArray(repos)) {
       console.error('Expected repos to be an array, but got:', repos)
-      return null;  // or return an empty array or some fallback data
+      return null
     }
-
-    let commitData : any[] = []
-
-    // fetch commits for each repository
-    const fetchCommits = async (repo: any) => {
-        const commitsResponse = await fetch(
-          `https://api.github.com/repos/${username}/${repo.name}/commits`,
-          {
-            headers: {
-                'Accept': 'application/vnd.github.v3+json',
-                'Authorization': `Bearer ${process.env.GITHUB_KEY}`
-            }
-          }
-        )
-  
-        if (!commitsResponse.ok) {
-          console.error(`error fetching commits for repo ${repo.name}:`, commitsResponse.status)
-          return []
-        }
-  
-        const commits = await commitsResponse.json()
-        return Array.isArray(commits)
-          ? commits.map((commit: any) => ({ message: commit.commit.message }))
-          : []
-      }
-  
-      // fetch commits for all repositories
-      const reposWithCommits = await Promise.all(
-        repos.map(async (repo) => ({
-          name: repo.name,
-          stars: repo.stargazers_count,
-          language: repo.language,
-          url: repo.html_url,
-          commits: await fetchCommits(repo),
-        }))
-      )
-
+    
 
     const userData = {
       login: partialUserData.login,
@@ -82,8 +46,12 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
       public_repos: partialUserData.public_repos,
       followers_count: partialUserData.followers,
       following_count: partialUserData.following,
-      repos: reposWithCommits
-    }
+      repos: repos.map((repo: any) => ({
+        name: repo.name,
+        stars: repo.stargazers_count,
+        language: repo.language,
+        url: repo.html_url
+      }))    }
 
     return userData;
   } catch (error) {
