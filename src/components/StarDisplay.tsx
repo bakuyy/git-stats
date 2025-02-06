@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { getTotalStars } from "@/app/utils/githubHelpers";
-import { FaStar } from "react-icons/fa";
-import { RiStarSLine } from "react-icons/ri";
 import { RiStarSmileFill } from "react-icons/ri";
-import { LuStar } from "react-icons/lu";
 import { BsStarFill } from "react-icons/bs";
 
 
@@ -34,7 +31,6 @@ export default function StarDisplay({ userData, starSize,dimension}:StarDisplayP
     return { top: randomY, left: randomX };
   }
 
-  
 
   const starIcons = Array.from({ length: totalStars }, (_, index) => {
     const icon = randomIcon();

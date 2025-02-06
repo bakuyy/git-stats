@@ -54,11 +54,13 @@ export default function UserPage() {
             <h1 className="text-3xl font-extrabold text-left sm:text-2xl md:text-4xl">
               GET / stats/
             </h1>
-            <h2 className="text-[#39D353] text-2xl"> for @{user.login}</h2>
+            <h2 className="[text-shadow:_0_4px_8px_#00BCD4] text-[#39D353] 
+                            text-xl md:text-2xl leading-snug font-manrope 
+                            font-extrabold "> for @{user.login}</h2>
 
           </div>
         </div>
-
+        <div className="text-2xl mt-[2vh]">actual-stats/</div>
         <UserStats />
         <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
       </div>
