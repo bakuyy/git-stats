@@ -4,10 +4,10 @@ import Image from "next/image";
 export default function Clan(userData: any) {
   const clan = getGithubClan(userData);
   const clanMapping = {
-    charcode: { name: "Charcode", colour: "yellow", icon: "🔥", img:'/images/charmander.png',description:'Bold and fast-paced coder who thrives on new features and rapid development' },
+    charcode: { name: "Charcode", colour: "yellow", icon: "🔥", img:'/images/char.png',description:'Bold and fast-paced coder who thrives on new features and rapid development' },
     squidhub: { name: "Squidhub", colour: "	#93c8d0", icon: "🌊" , img:'/images/squirtle.png',description:'Steady and reliable developer who focuses on clean, well-structured code'},
-    zapforce: { name: "Pikaforce", colour: "yellow", icon: "⚡", img:'/images/pikachu.png' ,description:'Efficient and performance-driven coder who optimizes and automates relentlessly'},
-    bulbyte: { name: "Bulbyte", colour: "green", icon: "🌱", img:'/images/bulbasaur.png',description:'Thoughtful and strategic developer who prioritizes long-term stability and maintainability' },
+    zapforce: { name: "Pikaforce", colour: "yellow", icon: "⚡", img:'/images/pika.png' ,description:'Efficient and performance-driven coder who optimizes and automates relentlessly'},
+    bulbyte: { name: "Bulbyte", colour: "green", icon: "🌱", img:'/images/bulb.png',description:'Thoughtful and strategic developer who prioritizes long-term stability and maintainability' },
   }
   if (!clan) return null;
   const clanDetails = clanMapping[clan as keyof typeof clanMapping]
@@ -21,14 +21,14 @@ export default function Clan(userData: any) {
             <div className="flex">
             <div className="text-5xl mr-4">{clanDetails.icon}</div>
 
-            <div>
-              <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <div className="justify-center items-center">
+              <h2 style={{color: `${clanDetails.colour}`}} className="text-xl font-bold text-white flex items-center gap-2">
                 {clanDetails.name}
               </h2>
               <p className="text-gray-400 text-sm">{clanDetails.description}</p>
             </div>
             </div>
-            <Image src={clanDetails.img.toString()} alt="Logo" width={500} height={300} />
+            <Image className="w-64 pl-24 mr-12" src={clanDetails.img.toString()} alt="Logo" width={500} height={300} />
 
           </div>
         </div>

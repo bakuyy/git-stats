@@ -82,7 +82,7 @@ export default function UserPage() {
             </h2>
           </div>
         </div>
-        <div className="text-2xl mt-[2vh] my-[4vh]">actual-stats/🥸</div>
+        <div className="text-2xl mt-[2vh] my-[4vh]">actual-stats/ 🥸</div>
         <UserStats />
         <div className="text-2xl mt-[2vh] mt-[5vh]">achievement-gallery/ 🏆</div>
         <div className="flex flex-wrap gap-[1vw]">
@@ -94,7 +94,7 @@ export default function UserPage() {
             <Clan userData={user} />
           </div>
         </div>
-        <div className="text-2xl mt-[6vh]">commitment-issues/⁉️</div>
+        <div className="text-2xl mt-[6vh]">commitment-issues/ ⁉️</div>
         <Commits userData={user}/>
       </div>
     </div>
