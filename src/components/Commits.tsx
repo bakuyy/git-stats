@@ -9,15 +9,13 @@ import { yellow } from "@mui/material/colors";
 
 export default function Commits(userData: any){
     const res = CommitsAnalysis(userData)
-    console.log("res",res)
-
 
     return (
         <div className={`${sourceCodePro.variable} bg-[#0d1117] text-white p-8 `}>
         <div className="max-w-4xl mx-auto flex flex-wrap  gap-4">
           <div className="w-full sm:w-[30%] bg-[#161b22] rounded-xl p-6 shadow-md shadow-[#ffcd42]">
             <p className="text-lg font-medium flex">
-              Happiest Commit 
+              happiest commit 
               <GoSmiley className="ml-8"  color={"#ffcd42"}  size={20}/>
             </p>
             <span className="text-[#ffcd42] font-bold">
@@ -26,7 +24,7 @@ export default function Commits(userData: any){
           </div>
           <div className="w-full sm:w-[30%] bg-[#161b22] rounded-xl p-6 shadow-md shadow-[#e0401f]">
             <p className="text-lg font-medium flex">
-              Most Rageful Commit{" "}
+              most rageful commit{" "}
               <PiSmileyAngryLight color={"#e0401f"} className="ml-4" size={30}/>
             </p>
             <span className="text-[#e0401f] font-bold">
@@ -35,7 +33,7 @@ export default function Commits(userData: any){
           </div>
           <div className="w-full sm:w-[30%] bg-[#161b22] rounded-xl p-6 shadow-md shadow-[#3091ff]">
             <p className="text-lg font-medium flex">
-              Random Commit Spotlight{" "}
+              random commit spotlight{" "}
               <FaRandom className="ml-4" color={"#3091ff"}  size={15}/>
 
             </p>

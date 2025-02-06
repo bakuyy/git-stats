@@ -47,6 +47,7 @@ export default function UserPage() {
   );
   var dimension = vw / 10;
 
+
   return (
     <div
       className={`${sourceCodePro.variable} font-source-code-pro min-h-screen bg-[#0d1117] text-white p-8 `}
@@ -80,9 +81,11 @@ export default function UserPage() {
             </h2>
           </div>
         </div>
-        <div className="text-2xl mt-[2vh]">actual-stats/</div>
+        <div className="text-2xl mt-[2vh] my-[2vh]">actual-stats/🥸</div>
         <UserStats />
+        <div className="text-2xl mt-[2vh] my-[5vh]">achievement-gallery/ 🏆</div>
         <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
+        <div className="text-2xl mt-[2vh] my-[2vh]">commitment-issues/⁉️</div>
         <Commits userData={user}/>
       </div>
     </div>
