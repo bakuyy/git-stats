@@ -18,3 +18,11 @@ export function getUsedLanguages(repos: any[]): string[]{
     .sort((a,b)=> b[1]-a[1]) // sort by most used languages 
     .map(([language])=>language)
 }
+
+// export function getCommits(repos: any[]): string[]{
+//     repos.forEach((repo)=>{
+//         // if (repo)
+//     })
+
+//     return ["hi"]
+// }

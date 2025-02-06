@@ -10,7 +10,7 @@ export default function UserStats() {
   const router = useRouter()
 
   const languageColors: Record<string, string> = {
-    JavaScript: "#f1e05a",  // Yellow
+    JavaScript: "#f1e05a",  
     TypeScript: "#3178c6",  // Blue
     Python: "#3572A5",      // Blue
     Java: "#b07219",        // Brown
@@ -43,7 +43,8 @@ export default function UserStats() {
         fetchUserData(storedUser)
           .then((userData) => {
             if (userData) {
-              setUser(userData);
+              setUser(userData)
+              console.log(user)
             } else {
               router.push("/");
             }

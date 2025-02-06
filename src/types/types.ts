@@ -7,3 +7,15 @@ type GitHubUser = {
     repos:any
   }
   
+
+  type reposData = {
+    name: string
+    stars: number
+    language: any
+    url: string
+    commits: Commit[],
+  }
+
+  type Commit =  {
+    message: string
+  }

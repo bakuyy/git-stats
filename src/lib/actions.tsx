@@ -1,45 +1,89 @@
 "use server"
-
 export async function fetchUserData(username: string): Promise<GitHubUser | null> {
   try {
-    // api call to fetch user data
-    const response = await fetch(`https://api.github.com/users/${username}`);
+    const response = await fetch(`https://api.github.com/users/${username}`, {
+      headers: {
+        'Accept': 'application/vnd.github.v3+json',
+        'Authorization': `Bearer ${process.env.GITHUB_KEY}`
+      }
+    })
     console.log('Fetching data for username:', username);
+    console.log('Response status:', response.status);
+
     if (!response.ok) {
-      return null; // user not found
+      const errorData = await response.json(); 
+      console.error('GitHub API Error:', errorData);
+      console.log("token", process.env.GITHUB_KEY)
+      return null; 
     }
 
-    // check for rate limit lol
-    const remaining = response.headers.get("X-RateLimit-Remaining");
-    const reset = response.headers.get("X-RateLimit-Reset");
+    const partialUserData = await response.json()
+    console.log('user data:', partialUserData)
 
-    if (remaining === "0" && reset !== null) {
-      const resetTime = new Date(parseInt(reset, 10) * 1000);
-      const message = `Rate limit exceeded. Try again at ${resetTime.toLocaleTimeString()}`;
-      console.log(message);
-      throw new Error(message);
+    const reposResponse = await fetch(partialUserData.repos_url, {
+        headers: {
+          Authorization: `token ${process.env.GITHUB_KEY}`,
+        }
+      })
+  
+      if (!reposResponse.ok) {
+        console.error('error fetching repositories:', reposResponse.status)
+        return null
+      }
+  
+      const repos = await reposResponse.json()
+
+    // check if repos is an array before proceeding
+    if (!Array.isArray(repos)) {
+      console.error('Expected repos to be an array, but got:', repos)
+      return null;  // or return an empty array or some fallback data
     }
 
-    // parse data
-    const data = await response.json();
+    let commitData : any[] = []
 
-    const [repos] = await Promise.all([
-      fetch(data.repos_url).then(res => res.json()),
-    ]);
+    // fetch commits for each repository
+    const fetchCommits = async (repo: any) => {
+        const commitsResponse = await fetch(
+          `https://api.github.com/repos/${username}/${repo.name}/commits`,
+          {
+            headers: {
+                'Accept': 'application/vnd.github.v3+json',
+                'Authorization': `Bearer ${process.env.GITHUB_KEY}`
+            }
+          }
+        )
+  
+        if (!commitsResponse.ok) {
+          console.error(`error fetching commits for repo ${repo.name}:`, commitsResponse.status)
+          return []
+        }
+  
+        const commits = await commitsResponse.json()
+        return Array.isArray(commits)
+          ? commits.map((commit: any) => ({ message: commit.commit.message }))
+          : []
+      }
+  
+      // fetch commits for all repositories
+      const reposWithCommits = await Promise.all(
+        repos.map(async (repo) => ({
+          name: repo.name,
+          stars: repo.stargazers_count,
+          language: repo.language,
+          url: repo.html_url,
+          commits: await fetchCommits(repo),
+        }))
+      )
+
 
     const userData = {
-      login: data.login,
-      avatar_url: data.avatar_url,
-      public_repos: data.public_repos,
-      followers_count: data.followers,
-      following_count: data.following,
-      repos: repos.map((repo: any) => ({
-        name: repo.name,
-        stars: repo.stargazers_count,
-        language: repo.language,
-        url: repo.html_url,
-      })),
-    };
+      login: partialUserData.login,
+      avatar_url: partialUserData.avatar_url,
+      public_repos: partialUserData.public_repos,
+      followers_count: partialUserData.followers,
+      following_count: partialUserData.following,
+      repos: reposWithCommits
+    }
 
     return userData;
   } catch (error) {
