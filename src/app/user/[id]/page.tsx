@@ -6,6 +6,7 @@ import { sourceCodePro } from "@/app/fonts/index";
 import { fetchUserData } from "@/lib/actions";
 import StarDisplay from "@/components/StarDisplay";
 import Commits from "@/components/Commits";
+import Clan from "@/components/Clan";
 import Loading from "./loading";
 
 export default function UserPage() {
@@ -81,11 +82,19 @@ export default function UserPage() {
             </h2>
           </div>
         </div>
-        <div className="text-2xl mt-[2vh] my-[2vh]">actual-stats/🥸</div>
+        <div className="text-2xl mt-[2vh] my-[4vh]">actual-stats/🥸</div>
         <UserStats />
-        <div className="text-2xl mt-[2vh] my-[5vh]">achievement-gallery/ 🏆</div>
-        <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
-        <div className="text-2xl mt-[2vh] my-[2vh]">commitment-issues/⁉️</div>
+        <div className="text-2xl mt-[2vh] mt-[5vh]">achievement-gallery/ 🏆</div>
+        <div className="flex flex-wrap gap-[1vw]">
+
+          <div className="flex-[30%]">
+            <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
+          </div>
+          <div className="flex-[60%]">
+            <Clan userData={user} />
+          </div>
+        </div>
+        <div className="text-2xl mt-[6vh]">commitment-issues/⁉️</div>
         <Commits userData={user}/>
       </div>
     </div>

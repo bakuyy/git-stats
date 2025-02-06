@@ -55,7 +55,7 @@ export default function StarDisplay({ userData, starSize,dimension}:StarDisplayP
   })
 
   return (
-    <div className="bg-gradient-to-r from-[#151247] max-w-4xl mx-auto flex flex-wrap to-[#2b134a] w-64 h-64 relative rounded-xl border white shadow-md shadow-white">
+    <div className="bg-gradient-to-r from-[#151247] mt-12  max-w-4xl mx-auto flex flex-wrap to-[#2b134a] w-64 h-64 relative rounded-xl border white shadow-md shadow-white">
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           {starIcons} 
           <span className=" ml-4"> repo constellation: {totalStars}</span>
