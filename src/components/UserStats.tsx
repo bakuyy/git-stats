@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { fetchUserData } from '@/lib/actions'
+import StarDisplay from './StarDisplay';
 
 export default function UserStats() {
   const [user, setUser] = useState<GitHubUser | null>(null);
@@ -23,13 +24,21 @@ export default function UserStats() {
           return
         }
         setUser(userData)
+        if (userData) {
+            setUser(userData);
+            console.log(
+              userData
+            )
+          }
       } catch (error) {
         console.error('Error loading user data:', error);
         router.push('/')
       }
     }
 
-    loadUserData();
+    loadUserData()
+
+
   }, [router]);
 
   if (!user) return null;
@@ -47,6 +56,9 @@ export default function UserStats() {
               <div className="w-3 h-3 bg-[#39D353] rounded-full" />
               <p className="text-xl">
                 Public Repositories: <span className="text-[#39D353] font-bold">{user.public_repos}</span>
+              </p>
+              <p>
+                <StarDisplay userData={user}/>
               </p>
             </div>
           </div>
