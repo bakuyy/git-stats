@@ -3,14 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { fetchUserData } from '@/lib/actions'
 import StarDisplay from './StarDisplay';
-import { Source_Code_Pro } from 'next/font/google';
-
-const code_pro = Source_Code_Pro({
-    display:'swap',
-    subsets:['latin'],
-    weight:['600'],
-    variable:'--font-source-code-pro'
-    })
+import { sourceCodePro } from '@/app/fonts';
 
 export default function UserStats() {
 
@@ -46,15 +39,12 @@ export default function UserStats() {
   if (!user) return null
   let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 
-  var dimension = vw / 15;
+  var dimension = vw / 10;
 
   return (
-    <div className={`${code_pro.variable} font-code_pro min-h-screen bg-[#0d1117] text-white p-8`}>
+    <div className={`${sourceCodePro.variable} min-h-screen bg-[#0d1117] text-white p-8`}>
       <div className="max-w-4xl mx-auto">
-        {/* Heading Section */}
-        <h1 className="text-4xl font-extrabold mb-6 text-center">
-          <span className="text-[#39D353] font-code_pro">{user.login}</span>'s GitHub Stats
-        </h1>
+
         
         <div className="bg-[#161b22] rounded-xl p-6 shadow-lg shadow-[#39D353]">
           <div className="grid gap-6">

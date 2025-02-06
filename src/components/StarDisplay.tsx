@@ -29,8 +29,8 @@ export default function StarDisplay({ userData, starSize,dimension}:StarDisplayP
 
   //choose random positioning
     const generateRandomPosition = (maxWidth: number, maxHeight: number) => {
-    const randomX = Math.floor(Math.random() * maxWidth*1.3) + "px";
-    const randomY = Math.floor(Math.random() * maxHeight*1.3) + "px";
+    const randomX = Math.floor(Math.random() * maxWidth) + "px";
+    const randomY = Math.floor(Math.random() * maxHeight) + "px";
     return { top: randomY, left: randomX };
   }
 

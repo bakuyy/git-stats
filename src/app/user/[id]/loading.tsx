@@ -1,15 +1,7 @@
-import { Source_Code_Pro } from "next/font/google"
-
-const code_pro = Source_Code_Pro({
-  display: 'swap',
-  subsets: ['latin'],
-  weight: ['600'],
-  variable: '--font-source-code-pro'
-})
-
+import { sourceCodePro } from "@/app/fonts"
 export default function Loading() {
   return (
-    <div className={`${code_pro.variable} font-code_pro min-h-screen flex flex-col items-center justify-center bg-[#0d1117]`}>
+    <div className={`${sourceCodePro.variable} font-code_pro min-h-screen flex flex-col items-center justify-center bg-[#0d1117]`}>
       <div className="w-full max-w-4xl px-6 text-center">
         <div className="flex gap-3 justify-center mb-8">
           <div className="w-4 h-4 bg-[#0D4429] rounded-full animate-pulse" />
