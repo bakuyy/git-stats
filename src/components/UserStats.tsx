@@ -2,7 +2,6 @@
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import { fetchUserData } from '@/lib/actions'
-import StarDisplay from './StarDisplay';
 import { sourceCodePro } from '@/app/fonts';
 
 export default function UserStats() {
@@ -37,12 +36,9 @@ export default function UserStats() {
   }, [router]);
 
   if (!user) return null
-  let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-
-  var dimension = vw / 10;
 
   return (
-    <div className={`${sourceCodePro.variable} min-h-screen bg-[#0d1117] text-white p-8`}>
+    <div className={`${sourceCodePro.variable} bg-[#0d1117] text-white p-8`}>
       <div className="max-w-4xl mx-auto">
 
         
@@ -54,10 +50,6 @@ export default function UserStats() {
                 Public Repositories: <span className="text-[#39D353] font-bold">{user.public_repos}</span>
               </p>
             </div>
-          </div>
-          
-          <div className="w-full flex justify-center mt-6">
-            <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
           </div>
 
         </div>

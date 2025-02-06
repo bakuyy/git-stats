@@ -3,18 +3,12 @@ import { Source_Code_Pro } from "next/font/google"
 import UserQueryForm from "@/components/forms/UserQuery"
 import { Typewriter } from "react-simple-typewriter"
 import Tooltip from '@mui/material/Tooltip'
+import { sourceCodePro } from "./fonts"
 
-
-const code_pro = Source_Code_Pro({
-  display:'swap',
-  subsets:['latin'],
-  weight:['600'],
-  variable:'--font-source-code-pro'
-}) 
 
 export default function Home() {
   return (
-    <div className={`${code_pro.variable} font-code_pro flex flex-col items-center justify-center min-h-screen px-6 sm:px-12 py-8 gap-8 sm:gap-16`}>       
+    <div className={`${sourceCodePro.variable} font-source-code-pro flex flex-col items-center justify-center min-h-screen px-6 sm:px-12 py-8 gap-8 sm:gap-16`}>       
 
       <main className="w-full max-w-4xl text-center sm:text-left">
         <h3 className="mb-4 text-xl sm:text-2xl text-center sm:text-left">built by bakuyy</h3>

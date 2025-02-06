@@ -34,3 +34,7 @@ body {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Initial glow */
   }
 }
+
+.font-source-code-pro {
+  font-family: var(--font-source-code-pro), monospace;
+}

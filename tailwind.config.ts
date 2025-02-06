@@ -15,8 +15,8 @@ export default {
         foreground: "var(--foreground)",
       },
       fontFamily:{
-        code_pro: ['var(--font-source-code-pro)'],
-      }
+        'source-code-pro': ['var(--font-source-code-pro)', 'monospace'],
+            }
     },
   },
   plugins: [],
