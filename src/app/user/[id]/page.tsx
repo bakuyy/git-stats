@@ -1,21 +1,20 @@
 "use client";
 import { Suspense, useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 import UserStats from "@/components/UserStats";
 import { sourceCodePro } from "@/app/fonts/index";
 import { fetchUserData } from "@/lib/actions";
 import StarDisplay from "@/components/StarDisplay";
 
-interface UserPageProps {
-  userData: GitHubUser;
-}
-
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
+  const { id } = useParams() // get username from dynamic route
+
   useEffect(() => {
     const storedUser = localStorage.getItem("githubUser");
 
     if (storedUser) {
-      fetchUserData(storedUser)
+      fetchUserData(storedUser)  
         .then((userData) => {
           if (userData) {
             setUser(userData);
@@ -25,13 +24,12 @@ export default function UserPage() {
           console.error("Error loading user data:", error);
         });
     }
-  }, [])
+  }, [id]); // Re-run the effect when `id` changes
 
   if (!user) return null;
 
-
-  let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-  var dimension = vw / 10
+  let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  var dimension = vw / 10;
 
   return (
     <div
@@ -52,18 +50,17 @@ export default function UserPage() {
             />
           </div>
 
-          <div>
+          <div className="flex">
             <h1 className="text-3xl font-extrabold text-left sm:text-2xl md:text-4xl">
               GET / stats/
-              <h2 className="text-[#39D353] text-2xl"> for @{user.login}</h2>
             </h1>
+            <h2 className="text-[#39D353] text-2xl"> for @{user.login}</h2>
+
           </div>
         </div>
 
-        {/* <Suspense fallback={<div>Loading stats...</div>}> */}
-          <UserStats />
-          <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
-        {/* </Suspense> */}
+        <UserStats />
+        <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
       </div>
     </div>
   );

@@ -1,41 +1,43 @@
-"use client"
-import { useState } from "react"
-import { fetchUserData } from "@/lib/actions"
-import { FaLongArrowAltRight } from "react-icons/fa"
-import { useRouter } from "next/navigation"
+"use client";
+import { useState } from "react";
+import { fetchUserData } from "@/lib/actions";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function UserQueryForm() {
-  const [username, setUsername] = useState("")
-  const [error, setError] = useState("")
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const router = useRouter()
+  const [username, setUsername] = useState("");
+  const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault()
-    
+    event.preventDefault();
+
     if (!username.trim()) {
-      setError("Please enter a username")
-      return
+      setError("Please enter a username");
+      return;
     }
 
-    setError("")
-    setIsSubmitting(true)
+    setError("");
+    setIsSubmitting(true);
 
     try {
-      const result = await fetchUserData(username)
+      const result = await fetchUserData(username);
       if (!result) {
-        setError("User not found")
-        return
+        setError("User not found");
+        return;
       }
-      
-      localStorage.setItem('githubUser', JSON.stringify(username))
-      router.push(`/user/${username}`)
+
+      // Store the username (not the full user data) in localStorage
+      localStorage.setItem('githubUser', username);
+
+      router.push(`/user/${username}`);
     } catch (err) {
-      setError("An error occurred while fetching user data")
+      setError("An error occurred while fetching user data");
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <form
@@ -63,5 +65,5 @@ export default function UserQueryForm() {
         <p className="text-red-500 text-sm absolute mt-16">{error}</p>
       )}
     </form>
-  )
+  );
 }

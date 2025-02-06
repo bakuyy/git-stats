@@ -14,21 +14,20 @@ export default function UserStats() {
     async function loadUserData() {
       const storedUser = localStorage.getItem('githubUser');
       
-      if (!storedUser) {
-        router.push('/')
-        return
-      }
-
-      try {
-        const userData = await fetchUserData(JSON.parse(storedUser));
-        if (!userData) {
-          router.push('/')
-          return
-        }
-        setUser(userData)
-      } catch (error) {
-        console.error('Error loading user data:', error);
-        router.push('/')
+      if (storedUser) {
+        // Use storedUser directly as a string (the username)
+        fetchUserData(storedUser)
+          .then((userData) => {
+            if (userData) {
+              setUser(userData);
+            } else {
+              router.push("/"); 
+            }
+          })
+          .catch((error) => {
+            console.error("Error loading user data:", error);
+            router.push("/"); 
+          });
       }
     }
 
