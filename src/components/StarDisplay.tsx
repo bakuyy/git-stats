@@ -3,37 +3,67 @@ import { getTotalStars } from "@/app/utils/githubHelpers";
 import { FaStar } from "react-icons/fa";
 import { RiStarSLine } from "react-icons/ri";
 import { RiStarSmileFill } from "react-icons/ri";
-import { GiBarbedStar } from "react-icons/gi";
 import { LuStar } from "react-icons/lu";
 import { BsStarFill } from "react-icons/bs";
 
-export default function StarDisplay({ userData }: { userData: any }) {
+
+interface StarDisplayProps {
+    userData : any
+    starSize: string
+    dimension: number
+
+}
+export default function StarDisplay({ userData, starSize,dimension}:StarDisplayProps) {
   const { repos } = userData;
   const totalStars = getTotalStars(repos);
 
   //choose random icon
   const randomIcon = () => {
     const iconsArray = [
-      <FaStar key={Math.random()} />,
-      <RiStarSLine key={Math.random()} />,
+
       <RiStarSmileFill key={Math.random()} />,
-      <GiBarbedStar key={Math.random()} />,
-      <LuStar key={Math.random()} />,
       <BsStarFill key={Math.random()} />,
     ];
     return iconsArray[Math.floor(Math.random() * iconsArray.length)];
   };
 
-  const starIcons = Array.from({ length: totalStars }, randomIcon);
+  //choose random positioning
+    const generateRandomPosition = (maxWidth: number, maxHeight: number) => {
+    const randomX = Math.floor(Math.random() * maxWidth*1.3) + "px";
+    const randomY = Math.floor(Math.random() * maxHeight*1.3) + "px";
+    return { top: randomY, left: randomX };
+  }
+
+  
+
+  const starIcons = Array.from({ length: totalStars }, (_, index) => {
+    const icon = randomIcon();
+    const randomPosition = generateRandomPosition(dimension, dimension)
+    return (
+      <div
+        key={index} 
+        style={{
+          position: "absolute",
+        //   top: randomPosition.top,
+        //   left: randomPosition.left,
+          margin: "20px",
+          ...randomPosition,
+          fontSize: starSize, 
+          borderRadius:"100px",
+          animation: "rotateAndGlow 20s infinite linear", 
+        }}
+      >
+        {icon}
+      </div>
+    );
+  })
 
   return (
-    <div>
-      <div>
-        <h2>Total Stars: {totalStars}</h2>
+    <div className="bg-gradient-to-r from-[#151247] to-[#2b134a] w-64 h-64 relative rounded-xl">
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
           {starIcons} 
+          <span className="">stars in your sky: {totalStars}</span>
         </div>
-      </div>
     </div>
   );
 }

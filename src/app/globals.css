@@ -19,3 +19,18 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes rotateAndGlow {
+  0% {
+    transform: rotate(0deg); /* Start at 0 degrees */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Initial glow */
+  }
+  50% {
+    transform: rotate(180deg); /* Rotate halfway */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); /* Stronger glow halfway */
+  }
+  100% {
+    transform: rotate(360deg); /* Full rotation */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Initial glow */
+  }
+}
