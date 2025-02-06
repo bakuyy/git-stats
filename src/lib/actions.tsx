@@ -7,8 +7,8 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
         'Authorization': `Bearer ${process.env.GITHUB_KEY}`
       }
     })
-    console.log('Fetching data for username:', username);
-    console.log('Response status:', response.status);
+    // console.log('Fetching data for username:', username);
+    // console.log('Response status:', response.status);
 
     if (!response.ok) {
       const errorData = await response.json(); 
@@ -18,7 +18,7 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
     }
 
     const partialUserData = await response.json()
-    console.log('user data:', partialUserData)
+    // console.log('user data:', partialUserData)
 
     const reposResponse = await fetch(partialUserData.repos_url, {
         headers: {

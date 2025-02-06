@@ -19,10 +19,8 @@ export function getUsedLanguages(repos: any[]): string[]{
     .map(([language])=>language)
 }
 
-// export function getCommits(repos: any[]): string[]{
-//     repos.forEach((repo)=>{
-//         // if (repo)
-//     })
-
-//     return ["hi"]
-// }
+export function getCommits(repos: any[]): string[] {
+    return repos.flatMap((repo) => 
+      repo.commits ? repo.commits.map((commit: any) => commit.message) : []
+    )
+  }
