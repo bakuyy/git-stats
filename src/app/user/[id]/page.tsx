@@ -12,11 +12,10 @@ import Loading from "./loading";
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
   const { id } = useParams(); // get username from dynamic route
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("githubUser")
-    
+    const storedUser = localStorage.getItem("githubUser");
 
     if (storedUser) {
       fetchUserData(storedUser)
@@ -28,14 +27,12 @@ export default function UserPage() {
         .catch((error) => {
           console.error("Error loading user data:", error);
         });
-
-    
     }
     const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 3000)
+      setIsLoading(false);
+    }, 3000);
 
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timer);
   }, [id]);
   if (isLoading) {
     return <Loading />;
@@ -47,7 +44,6 @@ export default function UserPage() {
     window.innerWidth || 0
   );
   var dimension = vw / 10;
-
 
   return (
     <div
@@ -84,18 +80,24 @@ export default function UserPage() {
         </div>
         <div className="text-2xl mt-[2vh] my-[4vh]">actual-stats/ 🥸</div>
         <UserStats />
-        <div className="text-2xl mt-[2vh] mt-[5vh]">achievement-gallery/ 🏆</div>
-        <div className="flex flex-wrap gap-[1vw]">
-
-          <div className="flex-[30%]">
-            <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
+        <div className="text-2xl mt-[2vh] mt-[5vh]">
+          achievement-gallery/ 🏆
+        </div>
+        <div className="flex flex-wrap gap-[2vw]">
+          <div className="">
+            <StarDisplay
+              dimension={dimension}
+              starSize={"1.5vh"}
+              userData={user}
+            />
           </div>
-          <div className="flex-[60%]">
+          <div className="flex-[40%]">
             <Clan userData={user} />
           </div>
         </div>
+
         <div className="text-2xl mt-[6vh]">commitment-issues/ ⁉️</div>
-        <Commits userData={user}/>
+        <Commits userData={user} />
       </div>
     </div>
   );
