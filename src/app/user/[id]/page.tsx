@@ -5,16 +5,20 @@ import UserStats from "@/components/UserStats";
 import { sourceCodePro } from "@/app/fonts/index";
 import { fetchUserData } from "@/lib/actions";
 import StarDisplay from "@/components/StarDisplay";
+import Commits from "@/components/Commits";
+import Loading from "./loading";
 
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
-  const { id } = useParams() // get username from dynamic route
+  const { id } = useParams(); // get username from dynamic route
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("githubUser");
+    const storedUser = localStorage.getItem("githubUser")
+    
 
     if (storedUser) {
-      fetchUserData(storedUser)  
+      fetchUserData(storedUser)
         .then((userData) => {
           if (userData) {
             setUser(userData);
@@ -23,12 +27,24 @@ export default function UserPage() {
         .catch((error) => {
           console.error("Error loading user data:", error);
         });
-    }
-  }, [id]); // Re-run the effect when `id` changes
 
+    
+    }
+    const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 3000)
+
+    return () => clearTimeout(timer)
+  }, [id]);
+  if (isLoading) {
+    return <Loading />;
+  }
   if (!user) return null;
 
-  let vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  let vw = Math.max(
+    document.documentElement.clientWidth || 0,
+    window.innerWidth || 0
+  );
   var dimension = vw / 10;
 
   return (
@@ -54,15 +70,20 @@ export default function UserPage() {
             <h1 className="text-3xl font-extrabold text-left sm:text-2xl md:text-4xl">
               GET / stats/
             </h1>
-            <h2 className="[text-shadow:_0_4px_8px_#00BCD4] text-[#39D353] 
+            <h2
+              className="[text-shadow:_0_4px_8px_#00BCD4] text-[#39D353] 
                             text-xl md:text-2xl leading-snug font-manrope 
-                            font-extrabold "> for @{user.login}</h2>
-
+                            font-extrabold "
+            >
+              {" "}
+              for @{user.login}
+            </h2>
           </div>
         </div>
         <div className="text-2xl mt-[2vh]">actual-stats/</div>
         <UserStats />
         <StarDisplay dimension={dimension} starSize={"1.5vh"} userData={user} />
+        <Commits userData={user}/>
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-import { fetchUserData } from "@/lib/actions";
 
 export function getTotalStars(repos: any[]): number{
     // from repos.stars
@@ -19,8 +18,10 @@ export function getUsedLanguages(repos: any[]): string[]{
     .map(([language])=>language)
 }
 
-export function getCommits(repos: any[]): string[] {
-    return repos.flatMap((repo) => 
-      repo.commits ? repo.commits.map((commit: any) => commit.message) : []
-    )
-  }
+// export function getCommits(userData: { commits: { message: string }[] } | undefined): string[]{
+//     if (!userData || !Array.isArray(userData.commits)) {
+//         return []
+//         }
+//         const commitMsgs = userData.commits.map((commit: { message: string }) => commit.message)
+//         return commitMsgs.filter((msg: string | undefined | null) => msg != null);
+// }
