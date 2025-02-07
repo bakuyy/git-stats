@@ -7,7 +7,7 @@ export default function Clan(userData: any) {
   const clan = getGithubClan(userData);
   const clanMapping = {
     charcode: { name: "A Charcode!", colour: "yellow", icon: "🔥", img:'/images/char.png', description:'Bold and fast-paced coder who thrives on new features and rapid development' },
-    squidhub: { name: "A Squidhub!", colour: "#93c8d0", icon: "🌊", img:'/images/squirtle.png', description:'Steady and reliable developer who focuses on clean, well-structured code' },
+    squidhub: { name: "A Squidhub!", colour: "#93c8d0", icon: "🌊", img:'/images/squirtle.webp', description:'Steady and reliable developer who focuses on clean, well-structured code' },
     zapforce: { name: "A Pikaforce!", colour: "yellow", icon: "⚡", img:'/images/pika.png', description:'Efficient and performance-driven coder who optimizes and automates relentlessly' },
     bulbyte: { name: "A Bulbyte!", colour: "green", icon: "🌱", img:'/images/bulb.png', description:'Thoughtful and strategic developer who prioritizes long-term stability and maintainability' },
   }
