@@ -1,9 +1,11 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { fetchUserData } from "@/lib/actions";
 import { sourceCodePro } from "@/app/fonts";
 import { getUsedLanguages } from "@/app/utils/githubHelpers";
+
 
 export default function UserStats() {
   const [user, setUser] = useState<GitHubUser | null>(null);
@@ -44,7 +46,6 @@ export default function UserStats() {
           .then((userData) => {
             if (userData) {
               setUser(userData)
-              console.log(user)
             } else {
               router.push("/");
             }
@@ -57,7 +58,7 @@ export default function UserStats() {
     }
     console.log(user)
     loadUserData();
-  }, [router]);
+  }, [router, user]);
 
   if (!user) return null;
   const languages = getUsedLanguages(user.repos)

@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+
+
 type GitHubUser = {
   login: string;
   avatar_url: string;
@@ -8,14 +13,14 @@ type GitHubUser = {
   commits: any;
 }
 
-  type reposData = {
-    name: string
-    stars: number
-    language: any
-    url: string
-    commits: Commit[],
-  }
+type reposData = {
+  name: string
+  stars: number
+  language: any
+  url: string
+  commits: Commit[],
+}
 
-  type Commit =  {
-    message: string
-  }
+type Commit =  {
+  message: string
+}

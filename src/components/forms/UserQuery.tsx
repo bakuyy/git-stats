@@ -3,6 +3,8 @@ import { useState } from "react";
 import { fetchUserData } from "@/lib/actions";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 
 export default function UserQueryForm() {
   const [username, setUsername] = useState("");

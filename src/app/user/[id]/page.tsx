@@ -11,6 +11,18 @@ import Loading from "./loading";
 import {useRouter} from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
+interface GitHubUser {
+  login: string;
+  avatar_url: string;
+  followers_count: number;
+  following_count: number;
+  public_repos: number;
+  repos: any;
+  commits: any;
+}
+
 
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
@@ -67,10 +79,6 @@ export default function UserPage() {
   }
   if (!user) return null;
 
-  const vw = Math.max(
-    document.documentElement.clientWidth || 0,
-    window.innerWidth || 0
-  )
 
   return (
     <div

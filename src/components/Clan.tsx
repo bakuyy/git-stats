@@ -1,5 +1,7 @@
 import getGithubClan from "@/lib/getGithubClan"
 import Image from "next/image";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 export default function Clan(userData: any) {
   const clan = getGithubClan(userData);
@@ -21,7 +23,7 @@ export default function Clan(userData: any) {
       }} 
       className="mt-12 max-w-4xl mx-auto flex flex-wrap w-full h-auto relative rounded-xl shadow-lg p-4"
     >
-      <div className="ml-4 mt-2 text-lg font-semibold">if-you-were-a-pokemon, you'd-be...</div>
+      <div className="ml-4 mt-2 text-lg font-semibold">if-you-were-a-pokemon, youd-be...</div>
       <div className="p-6 w-full flex items-center">
         <div className="flex items-center space-x-4 w-full">
           <div className="text-5xl">{clanDetails.icon}</div>

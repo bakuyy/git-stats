@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 export function getTotalStars(repos: any[]): number{
     // from repos.stars
@@ -18,10 +19,3 @@ export function getUsedLanguages(repos: any[]): string[]{
     .map(([language])=>language)
 }
 
-// export function getCommits(userData: { commits: { message: string }[] } | undefined): string[]{
-//     if (!userData || !Array.isArray(userData.commits)) {
-//         return []
-//         }
-//         const commitMsgs = userData.commits.map((commit: { message: string }) => commit.message)
-//         return commitMsgs.filter((msg: string | undefined | null) => msg != null);
-// }

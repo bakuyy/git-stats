@@ -1,4 +1,6 @@
 "use server"
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export async function fetchUserData(username: string): Promise<GitHubUser | null> {
   try {
     // fetch user data

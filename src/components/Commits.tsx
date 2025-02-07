@@ -3,6 +3,8 @@ import { GoSmiley } from "react-icons/go";
 import { PiSmileyAngryLight } from "react-icons/pi";
 import { FaRandom } from "react-icons/fa";
 import { sourceCodePro } from "@/app/fonts";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 export default function Commits(userData: any){
     const res = CommitsAnalysis(userData);

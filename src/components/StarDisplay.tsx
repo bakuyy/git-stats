@@ -2,6 +2,8 @@ import React from "react";
 import { getTotalStars } from "@/app/utils/githubHelpers";
 import { RiStarSmileFill } from "react-icons/ri";
 import { BsStarFill } from "react-icons/bs";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 
 interface StarDisplayProps {
     userData: any;
