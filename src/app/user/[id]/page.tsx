@@ -13,8 +13,28 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
-  const { id } = useParams(); // get username from dynamic route
-  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams()
+  const [dimension, setDimension] = useState(0)
+  const [isLoading, setIsLoading] = useState(true)
+  useEffect(() => {
+    const updateDimension = () => {
+      const vw = Math.max(
+        document.documentElement.clientWidth || 0,
+        window.innerWidth || 0
+      )
+      if (vw < 768) {
+        setDimension(vw / 2); 
+      } else {
+        setDimension(vw / 10); 
+      }
+    };
+
+    updateDimension();
+
+    window.addEventListener("resize", updateDimension);
+
+    return () => window.removeEventListener("resize", updateDimension);
+  }, [])
 
   const router = useRouter()
   const handleClick = () =>{
@@ -50,7 +70,6 @@ export default function UserPage() {
     document.documentElement.clientWidth || 0,
     window.innerWidth || 0
   );
-  var dimension = vw / 10;
 
   return (
     <div
