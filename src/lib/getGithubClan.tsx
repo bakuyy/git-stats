@@ -1,13 +1,7 @@
 import { getUsedLanguages } from "@/app/utils/githubHelpers";
 
-interface GithubStats  {
-    commitCount: number;
-    commits : string[]
-    languages: string[]
-}
-
 export default function getGithubClan(data: { userData: { commits: string[], repos: { language: string }[] } }) {
-    let scores = {charcode:0, squidhub:0, pikaforce:0, bulbyte:0}
+    const scores = {charcode:0, squidhub:0, pikaforce:0, bulbyte:0}
     const userData = data.userData
     const commitMessages = userData.commits
     const commitCount = commitMessages.length
@@ -34,7 +28,7 @@ export default function getGithubClan(data: { userData: { commits: string[], rep
         else if (["Java", "C#", "TypeScript"].includes(language)) scores.bulbyte += 3;
     })
 
-    let maxClan = Object.keys(scores).reduce((a, b) => (scores[a as keyof typeof scores] > scores[b as keyof typeof scores] ? a : b))
+    const maxClan = Object.keys(scores).reduce((a, b) => (scores[a as keyof typeof scores] > scores[b as keyof typeof scores] ? a : b))
   
       return {
         charcode: "charcode",

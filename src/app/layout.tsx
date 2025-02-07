@@ -12,12 +12,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const code_pro = Source_Code_Pro({
-  display:'swap',
-  subsets:['latin'],
-  weight:['600'],
-  variable:'--font-source-code-pro'
-}) 
 
 export const metadata: Metadata = {
   title: "Create Next App",

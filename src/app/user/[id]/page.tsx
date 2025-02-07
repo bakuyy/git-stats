@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import UserStats from "@/components/UserStats";
 import { sourceCodePro } from "@/app/fonts/index";
@@ -10,6 +10,7 @@ import Clan from "@/components/Clan";
 import Loading from "./loading";
 import {useRouter} from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import Image from "next/image";
 
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
@@ -66,10 +67,10 @@ export default function UserPage() {
   }
   if (!user) return null;
 
-  let vw = Math.max(
+  const vw = Math.max(
     document.documentElement.clientWidth || 0,
     window.innerWidth || 0
-  );
+  )
 
   return (
     <div
@@ -87,9 +88,11 @@ export default function UserPage() {
               <div className="w-4 h-4 bg-[#26A641] rounded-full" />
               <div className="w-4 h-4 bg-[#39D353] rounded-full" />
             </div>
-            <img
-              className="rounded-full w-32 h-32 object-cover "
+            <Image
+              className="rounded-full object-cover "
               src={user.avatar_url}
+              width={128}
+              height={128}
               alt={`Avatar of ${user.login}`}
             />
           </div>

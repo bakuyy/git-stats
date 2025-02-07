@@ -1,4 +1,3 @@
-import { FC } from "react";
 import CommitsAnalysis from "@/lib/commitsAnalysis";
 import { GoSmiley } from "react-icons/go";
 import { PiSmileyAngryLight } from "react-icons/pi";

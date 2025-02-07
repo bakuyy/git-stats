@@ -3,7 +3,6 @@ import UserQueryForm from "@/components/forms/UserQuery"
 import { Typewriter } from "react-simple-typewriter"
 import Tooltip from '@mui/material/Tooltip'
 import { sourceCodePro } from "./fonts"
-import {motion} from "motion/react"
 
 export default function Home() {
   return (

@@ -1,10 +1,5 @@
 import Sentiment from 'sentiment';
 
-interface SentimentResult {
-    text: string;
-    score:number;
-}
-
 
 export default function CommitsAnalysis(data:{userData: { commits: string[] }}): [string, string, string] {
     const userData = data.userData
