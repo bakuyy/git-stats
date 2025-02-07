@@ -37,7 +37,7 @@ export default function Clan(userData: any) {
           </div>
 
           <Image 
-            className="w-32 h-32 object-contain" 
+            className="w-32 h-32 object-contain mb-2" 
             src={clanDetails.img} 
             alt="Logo" 
             width={128} 
