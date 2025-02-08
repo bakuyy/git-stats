@@ -13,19 +13,19 @@ export default function Commits(userData: any){
     {
       title: "happiest commit",
       icon: <GoSmiley color="#ffcd42" size={20} />,
-      color: "255, 205, 66",
+      color: "#FBCD42",
       data: res[0],
     },
     {
       title: "most rageful commit",
       icon: <PiSmileyAngryLight color="#e0401f" size={30} />,
-      color: "224, 64, 31",
+      color: "#E0401E",
       data: res[1],
     },
     {
       title: "random commit spotlight",
       icon: <FaRandom color="#3091ff" size={15} />,
-      color: "48, 145, 255",
+      color: "#3091ff",
       data: res[2],
     },
   ];
@@ -39,12 +39,12 @@ export default function Commits(userData: any){
             className="w-full sm:w-[30%] bg-[#161b22] rounded-xl p-6 shadow-md"
             style={{ boxShadow: `0 4px 6px rgba(${commit.color}, 0.6)` }}
           >
-            <p className="text-lg font-medium flex">
-              {commit.title}
+            <div style={{ color: commit.color, paddingBottom:'10px'}} className="text-lg font-medium flex ">
+              <span style={{ color: commit.color }}>{commit.title}</span>
               <span className="ml-4" style={{ color: commit.color }}>
                 {commit.icon}
               </span>
-            </p>
+            </div>
             <span className={`text-[${commit.color}] font-bold`}>
               {commit.data}
             </span>

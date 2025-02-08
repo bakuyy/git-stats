@@ -123,18 +123,18 @@ export default function UserPage() {
         <div className="text-2xl mt-[2vh] mt-[2vh]">
           achievement-gallery/ 🏆
         </div>
-        <div className="flex flex-wrap gap-[2vw]">
-          <div className="">
-            <StarDisplay
-              dimension={dimension}
-              starSize={"1.5vh"}
-              userData={user}
-            />
-          </div>
-          <div className="flex-[40%]">
-            <Clan userData={user} />
-          </div>
-        </div>
+        <div className="flex flex-wrap justify-center gap-[2vw]">
+  <div className="flex-1 min-w-[300px] max-w-[400px]">
+    <StarDisplay
+      dimension={dimension}
+      starSize={"1.5vh"}
+      userData={user}
+    />
+  </div>
+  <div className="flex-1 min-w-[300px] max-w-[600px]">
+    <Clan userData={user} />
+  </div>
+</div>
 
         <div className="text-2xl mt-[6vh]">commitment-issues/ ⁉️</div>
         <Commits userData={user} />

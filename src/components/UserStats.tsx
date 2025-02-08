@@ -93,7 +93,7 @@ export default function UserStats() {
 
         <div className="w-full sm:w-[95%] bg-[#161b22] rounded-xl p-6 shadow-md shadow-[#39D353]">
           <p className="text-lg font-medium">
-            Languages:{" "}
+            Tech Stack (in no particular order!):{" "}
             <div className="flex flex-wrap gap-2 mt-2">
             {languages.map((language) => {
             const color = languageColors[language] || languageColors["Other"];
