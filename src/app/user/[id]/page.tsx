@@ -62,7 +62,7 @@ export default function UserPage() {
     };
 
     fetchData();
-  }, [id]); 
+  }, [id, user]); 
 
   const handleClick = () => {
     router.push("/");
