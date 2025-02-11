@@ -92,7 +92,6 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
       })),
       commits: allCommits 
     }
-    console.log(allCommits)
     return userData
   } catch (error) {
     console.error('error fetching github user:', error)

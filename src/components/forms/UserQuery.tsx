@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 
 export default function UserQueryForm() {
   const [username, setUsername] = useState("");
+  const [userData, setUserData] = useState()
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();

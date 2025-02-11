@@ -8,10 +8,9 @@ import StarDisplay from "@/components/StarDisplay";
 import Commits from "@/components/Commits";
 import Clan from "@/components/Clan";
 import Loading from "./loading";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import Image from "next/image";
-/* eslint-disable @typescript-eslint/no-explicit-any */
 
 interface GitHubUser {
   login: string;
@@ -23,60 +22,53 @@ interface GitHubUser {
   commits: any;
 }
 
-
 export default function UserPage() {
   const [user, setUser] = useState<GitHubUser | null>(null);
-  const { id } = useParams()
-  const [dimension, setDimension] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const [dimension, setDimension] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
+  const router = useRouter();
+
   useEffect(() => {
     const updateDimension = () => {
       const vw = Math.max(
         document.documentElement.clientWidth || 0,
         window.innerWidth || 0
-      )
-      if (vw < 768) {
-        setDimension(vw / 2); 
-      } else {
-        setDimension(vw / 10); 
-      }
+      );
+      setDimension(vw < 768 ? vw / 2 : vw / 10);
     };
 
     updateDimension();
-
     window.addEventListener("resize", updateDimension);
-
     return () => window.removeEventListener("resize", updateDimension);
-  }, [])
-
-  const router = useRouter()
-  const handleClick = () =>{
-    router.push("/")
-  }
+  }, []); 
 
   useEffect(() => {
-    const storedUser = localStorage.getItem("githubUser");
-
-    if (storedUser) {
-      fetchUserData(storedUser)
-        .then((userData) => {
+    const fetchData = async () => {
+      try {
+        const storedUser = localStorage.getItem("githubUser");
+        if (storedUser && !user) {
+          const userData = await fetchUserData(storedUser);
           if (userData) {
             setUser(userData);
+            localStorage.setItem("userData", JSON.stringify(userData));
           }
-        })
-        .catch((error) => {
-          console.error("Error loading user data:", error);
-        });
-    }
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+        }
+      } catch (error) {
+        console.error("Error loading user data:", error);
+      } finally {
+        setTimeout(() => setIsLoading(false), 3000);
+      }
+    };
 
-    return () => clearTimeout(timer);
-  }, [id]);
-  if (isLoading) {
-    return <Loading />;
-  }
+    fetchData();
+  }, [id]); 
+
+  const handleClick = () => {
+    router.push("/");
+  };
+
+  if (isLoading) return <Loading />;
   if (!user) return null;
 
 
