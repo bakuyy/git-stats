@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
-import { fetchUserData } from "@/lib/actions";
 import { sourceCodePro } from "@/app/fonts";
 import { getUsedLanguages } from "@/app/utils/githubHelpers";
 

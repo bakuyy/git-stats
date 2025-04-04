@@ -18,8 +18,8 @@ interface GitHubUser {
   followers_count: number;
   following_count: number;
   public_repos: number;
-  repos: any;
-  commits: any;
+  repos: [string];
+  commits: [string];
 }
 
 export default function UserPage() {
