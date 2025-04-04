@@ -45,7 +45,7 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
 
     // take the 5 most recent repositories
     // rate limit lol
-    const recentRepos = sortedRepos.slice(0, 5)
+    const recentRepos = sortedRepos.slice(0, 10)
 
     // fetch commits for the 5 most recent repositories
     let allCommits: string[] = []
