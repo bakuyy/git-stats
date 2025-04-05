@@ -3,6 +3,12 @@
 
 export async function fetchUserData(username: string): Promise<GitHubUser | null> {
   try {
+    // Check if GitHub key is available
+    if (!process.env.GITHUB_KEY) {
+      console.error('GitHub API key is not configured')
+      return null
+    }
+
     // fetch user data
     const response = await fetch(`https://api.github.com/users/${username}`, {
       headers: {
@@ -12,6 +18,14 @@ export async function fetchUserData(username: string): Promise<GitHubUser | null
     })
 
     if (!response.ok) {
+      if (response.status === 404) {
+        console.error('User not found:', username)
+        return null
+      }
+      if (response.status === 401) {
+        console.error('GitHub API authentication failed. Check your API key configuration.')
+        return null
+      }
       const errorData = await response.json()
       console.error('github api error:', errorData)
       return null
